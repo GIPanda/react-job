@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import  {createStore} from 'redux';
-import { Button } from 'antd-mobile';
+import { Button, List } from 'antd-mobile';
 
 class App extends Component {
   render() {
@@ -44,11 +44,13 @@ class Team1 extends Component {
       <div>
         <h2>Team1 leader of team one, {this.props.leader}</h2>
         <Button type="primary" onClick={this.addSoldier}>add member</Button>
-        <ul>
+        <List
+            renderHeader={() => 'Soldier list'}
+          >
           {this.state.soldiers.map(v => {
-            return <li key={v}>{v}</li>
+            return <List.Item key={v}>{v}</List.Item>
           })}
-        </ul>
+        </List>
       </div>
     )
   }
