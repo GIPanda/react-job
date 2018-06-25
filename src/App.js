@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import  {createStore} from 'redux';
-import { SSL_OP_PKCS1_CHECK_2 } from 'constants';
+import { Button } from 'antd-mobile';
 
 class App extends Component {
   render() {
@@ -28,6 +28,10 @@ class Team1 extends Component {
     }
   }
 
+  componentWillMount() {
+
+  }
+
   addSoldier = () => {
     console.log('hello add soldier');
     this.setState({
@@ -39,7 +43,7 @@ class Team1 extends Component {
     return (
       <div>
         <h2>Team1 leader of team one, {this.props.leader}</h2>
-        <button onClick={this.addSoldier}>add member</button>
+        <Button type="primary" onClick={this.addSoldier}>add member</Button>
         <ul>
           {this.state.soldiers.map(v => {
             return <li key={v}>{v}</li>

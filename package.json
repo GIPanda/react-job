@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd-mobile": "^2.2.0",
+    "babel-plugin-import": "^1.8.0",
     "express": "^4.16.3",
     "mongoose": "^5.1.6",
     "react": "^16.4.1",
@@ -15,5 +17,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "babel": {
+    "plugins": [
+      ["import", { "libraryName": "antd-mobile", "style": "css" }]
+    ]
   }
 }
