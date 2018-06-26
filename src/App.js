@@ -5,54 +5,19 @@ import { Button, List } from 'antd-mobile';
 
 class App extends Component {
   render() {
-    const boss = 'gipanda';
+    const store = this.props.store;
+    const num = store.getState();
+    const addGun = this.props.addGun;
+    const removeGun = this.props.removeGun;
+    const addGunAsync = this.props.addGunAsync;
     return (
       <div>
-        <h2>Knights {boss}</h2>
-        <Team1 leader='Patrick'></Team1>
-        <Team2 leader='Frank'></Team2>
+        <h2>Now we have {num} guns</h2>
+        <Button onClick={()=>store.dispatch(addGun())}>Add gun</Button>
+        <Button onClick={()=>store.dispatch(removeGun())}>Remove gun</Button>
+        <Button onClick={()=>store.dispatch(addGunAsync())}>Add gun in 2 seconds</Button>
       </div>
     );
-  }
-}
-
-function Team2(props) {
-  return <h2>Team2 leader {props.leader}</h2>
-}
-
-class Team1 extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      soldiers: ['sd1', 'sd2', 'sd3']
-    }
-  }
-
-  componentWillMount() {
-
-  }
-
-  addSoldier = () => {
-    console.log('hello add soldier');
-    this.setState({
-      soldiers: [...this.state.soldiers, 'new soldier' + Math.random()]
-    })
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>Team1 leader of team one, {this.props.leader}</h2>
-        <Button type="primary" onClick={this.addSoldier}>add member</Button>
-        <List
-            renderHeader={() => 'Soldier list'}
-          >
-          {this.state.soldiers.map(v => {
-            return <List.Item key={v}>{v}</List.Item>
-          })}
-        </List>
-      </div>
-    )
   }
 }
 
