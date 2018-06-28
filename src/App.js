@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addGun, removeGun, addGunAsync} from './index.redux';
 import './App.css';
-import  {createStore} from 'redux';
 import { Button, List } from 'antd-mobile';
 
 class App extends Component {
   render() {
-    const store = this.props.store;
-    const num = store.getState();
-    const addGun = this.props.addGun;
-    const removeGun = this.props.removeGun;
-    const addGunAsync = this.props.addGunAsync;
     return (
       <div>
-        <h2>Now we have {num} guns</h2>
-        <Button onClick={()=>store.dispatch(addGun())}>Add gun</Button>
-        <Button onClick={()=>store.dispatch(removeGun())}>Remove gun</Button>
-        <Button onClick={()=>store.dispatch(addGunAsync())}>Add gun in 2 seconds</Button>
+        <h2>Now we have {this.props.num} guns</h2>
+        <Button onClick={this.props.addGun}>Add gun</Button>
+        <Button onClick={this.props.removeGun}>Remove gun</Button>
+        <Button onClick={this.props.addGunAsync}>Add gun in 2 seconds</Button>
       </div>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {num: state}
+}
+const actionCreators = { addGun, removeGun, addGunAsync}
 
+App = connect(mapStateToProps, actionCreators)(App);
 export default App;
