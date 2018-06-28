@@ -4,6 +4,10 @@ import { addGun, removeGun, addGunAsync} from './index.redux';
 import './App.css';
 import { Button, List } from 'antd-mobile';
 
+@connect(
+  state => ({num: state}),
+  { addGun, removeGun, addGunAsync}
+)
 class App extends Component {
   render() {
     return (
@@ -16,10 +20,5 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {num: state}
-}
-const actionCreators = { addGun, removeGun, addGunAsync}
 
-App = connect(mapStateToProps, actionCreators)(App);
 export default App;
