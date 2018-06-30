@@ -11,11 +11,11 @@ import {
   Switch
 } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
-import { counter } from './index.redux';
+import reducers from './reducer';
 import Auth from './Auth';
 import Dashboard from './Dashboard';
 
-const store = createStore(counter, compose(
+const store = createStore(reducers, compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : () => {}
 ));
