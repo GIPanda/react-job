@@ -5,7 +5,7 @@ import './App.css';
 import { Button, List } from 'antd-mobile';
 
 @connect(
-  state => ({num: state}),
+  state => ({num: state.counter}),
   { addGun, removeGun, addGunAsync}
 )
 class App extends Component {

@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 import {
   BrowserRouter,
   Route,
-  Link,
   Redirect,
   Switch
 } from 'react-router-dom';
