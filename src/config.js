@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Toast } from 'antd-mobile';
+import 'antd-mobile/dist/antd-mobile.css';
 
 // intercept request
 axios.interceptors.request.use(function(config){
@@ -9,8 +10,6 @@ axios.interceptors.request.use(function(config){
 
 // intercept response
 axios.interceptors.response.use(function(config){
-  setTimeout(() => {
-    Toast.hide();
-  }, 1000)
+  Toast.hide();
   return config;
 })

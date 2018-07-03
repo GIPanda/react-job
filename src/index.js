@@ -10,11 +10,11 @@ import {
   Switch
 } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
+
+import Login from './container/login/login';
+import Register from './container/register/register';
 import reducers from './reducer';
-import Auth from './Auth';
-import Dashboard from './Dashboard';
 import './config';
-import 'antd-mobile/dist/antd-mobile.css';
 
 const store = createStore(reducers, compose(
   applyMiddleware(thunk),
@@ -24,11 +24,10 @@ const store = createStore(reducers, compose(
 ReactDOM.render(
   (<Provider store={store}>
     <BrowserRouter>
-      <Switch>
-        <Route path='/login' component={Auth}></Route>
-        <Route path='/dashboard' component={Dashboard}></Route>
-        <Redirect to='/dashboard'></Redirect>
-      </Switch>
+      <div>
+        <Route path='/login' component={Login}></Route>
+        <Route path='/register' component={Register}></Route>
+      </div>
     </BrowserRouter>
   </Provider>),
   document.getElementById('root')
