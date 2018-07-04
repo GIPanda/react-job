@@ -13,6 +13,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import Login from './container/login/login';
 import Register from './container/register/register';
+import AuthRoute from './component/auth-route/auth-route';
 import reducers from './reducer';
 import './config';
 
@@ -25,6 +26,7 @@ ReactDOM.render(
   (<Provider store={store}>
     <BrowserRouter>
       <div>
+        <AuthRoute></AuthRoute>
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Register}></Route>
       </div>
