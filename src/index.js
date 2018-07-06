@@ -16,6 +16,7 @@ import Register from './container/register/register';
 import AuthRoute from './component/auth-route/auth-route';
 import reducers from './reducer';
 import './config';
+import './style.css';
 
 const store = createStore(reducers, compose(
   applyMiddleware(thunk),
