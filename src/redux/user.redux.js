@@ -32,7 +32,7 @@ function errorMsg(msg) {
   return {msg, type: ERROR_MSG}
 }
 
-export function register({user, pwd, repeatPwd, type}) {
+export function register({user, pwd, repeatPwd, role}) {
   if (!user || !pwd) {
     return errorMsg('Please input username and password');
   }
@@ -42,10 +42,10 @@ export function register({user, pwd, repeatPwd, type}) {
   }
 
   return dispatch => {
-    axios.post('/user/register', {user, pwd, type})
+    axios.post('/user/register', {user, pwd, role})
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          dispatch(registerSuccess({user, pwd, type}));
+          dispatch(registerSuccess({user, pwd, role}));
         } else {
           dispatch(errorMsg(res.data.msg));
         }
