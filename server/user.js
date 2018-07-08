@@ -1,4 +1,5 @@
 const express = require('express');
+const utils = require('utility');
 const Router = express.Router();
 const models = require('./model');
 const User = models.getModel('user');
@@ -14,7 +15,7 @@ Router.post('/register', function(req, res) {
     if (doc) {
       return res.json({code: 1, msg: 'User already exists'});
     }
-    User.create({name: user, pwd, role}, function(e, d) {
+    User.create({role, name: user, pwd:md5Pwd(pwd)}, function(e, d) {
       if (e) {
         return res.json({code: 1, msg: 'Backend error'})
       }
@@ -26,5 +27,10 @@ Router.post('/register', function(req, res) {
 Router.get('/info', function(req, res) {
   return res.json({code: 0})
 })
+
+function md5Pwd(pwd) {
+  const salt = 'react_job_salt_AT9#7:w[G)"264mF';
+  return utils.md5(utils.md5(pwd + salt));
+}
 
 module.exports = Router;
