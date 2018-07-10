@@ -3,6 +3,7 @@ const utils = require('utility');
 const Router = express.Router();
 const models = require('./model');
 const User = models.getModel('user');
+const doc_filter = {pwd: 0, __v:0}
 
 Router.get('/list', function(req, res) {
   // User.remove({}, function(e, d){});
@@ -11,32 +12,47 @@ Router.get('/list', function(req, res) {
   })
 })
 Router.post('/login', function(req, res) {
-  const {user, pwd} = req.body;
-  User.findOne({name: user, pwd: md5Pwd(pwd)}, {pwd: 0}, function(err, doc){
+  const {username, pwd} = req.body;
+  User.findOne({username, pwd: md5Pwd(pwd)}, doc_filter, function(err, doc){
     if (!doc) {
       return res.json({code: 1, msg: 'Username or password error'});
     } else {
+      res.cookie('userid', doc._id);
       return res.json({code: 0, data: doc});
     }
   })
 })
 Router.post('/register', function(req, res) {
-  const {user, pwd, role} = req.body;
-  User.findOne({name: user}, function(err, doc) {
+  const {username, pwd, role} = req.body;
+  User.findOne({username}, function(err, doc) {
     if (doc) {
       return res.json({code: 1, msg: 'User already exists'});
     }
-    User.create({role, name: user, pwd:md5Pwd(pwd)}, function(e, d) {
+    const userModel = new User({role, username, pwd:md5Pwd(pwd)});
+    userModel.save(function(e, d){
       if (e) {
         return res.json({code: 1, msg: 'Backend error'})
+      } else {
+        const {username, type, _id} = d;
+        res.cookie('userid', _id);
+        return res.json({code: 0, data:{username, type, _id}});
       }
-
-      return res.json({code: 0});
     })
   })
 })
 Router.get('/info', function(req, res) {
-  return res.json({code: 0})
+  const {userid} = req.cookies;
+  if (!userid) {
+    return res.json({code: 1})
+  } else {
+    User.findOne({_id: userid}, doc_filter, function(err, doc) {
+      if (err || !doc) {
+        return res.json({code: 1, msg: 'Backend error'});
+      } else{
+        return res.json({code: 0, data: doc});
+      }
+    })
+  }
 })
 
 function md5Pwd(pwd) {

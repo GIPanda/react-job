@@ -19,7 +19,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '',
+      username: '',
       pwd: ''
     };
     this.register = this.register.bind(this);
@@ -49,7 +49,7 @@ class Login extends React.Component {
           <List>
             {this.props.msg?<p className="error-msg">{this.props.msg}</p> : null}
             <InputItem
-              onChange={v => this.handleChange('user', v)}
+              onChange={v => this.handleChange('username', v)}
             >Username</InputItem>
             <InputItem
               onChange={v => this.handleChange('pwd', v)}
