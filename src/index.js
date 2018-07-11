@@ -13,6 +13,8 @@ import registerServiceWorker from './registerServiceWorker';
 
 import Login from './container/login/login';
 import Register from './container/register/register';
+import BossInfo from './container/boss-info/boss-info';
+import GeniusInfo from './container/genius-info/genius-info';
 import AuthRoute from './component/auth-route/auth-route';
 import reducers from './reducer';
 import './config';
@@ -32,9 +34,12 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <AuthRoute></AuthRoute>
-        <Route path='/boss' component={Boss}></Route>
-        <Route path='/login' component={Login}></Route>
-        <Route path='/register' component={Register}></Route>
+        <Switch>
+          <Route path='/genius-info' component={GeniusInfo}></Route>
+          <Route path='/boss-info' component={BossInfo}></Route>
+          <Route path='/login' component={Login}></Route>
+          <Route path='/register' component={Register}></Route>
+        </Switch>
       </div>
     </BrowserRouter>
   </Provider>),
