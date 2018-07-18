@@ -8,7 +8,8 @@ const LOAD_DATA = 'Load data';
 
 // actions
 function authSuccess(data) {
-  return { type: AUTH_SUCCESS, payload: data }
+  const {pwd, ...payload} = data;
+  return { type: AUTH_SUCCESS, payload: payload }
 }
 
 const initState = {
