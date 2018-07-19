@@ -15,6 +15,7 @@ import Login from './container/login/login';
 import Register from './container/register/register';
 import BossInfo from './container/boss-info/boss-info';
 import GeniusInfo from './container/genius-info/genius-info';
+import Dashboard from './component/dashboard/dashboard';
 import AuthRoute from './component/auth-route/auth-route';
 import reducers from './reducer';
 import './config';
@@ -39,6 +40,7 @@ ReactDOM.render(
           <Route path='/boss-info' component={BossInfo}></Route>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
+          <Route component={Dashboard}></Route>
         </Switch>
       </div>
     </BrowserRouter>
