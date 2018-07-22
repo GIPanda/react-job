@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {NavBar} from 'antd-mobile';
+import NavLinkBar from '../nav-link-bar/nav-link-bar';
 
 function Boss() {
   return <h2>Boss page</h2>
@@ -38,7 +39,7 @@ class Dashboard extends React.Component {
         icon: 'boss',
         title: 'Genius list',
         component: Boss,
-        hide: user.type == 'genius'
+        hide: user.role === 'genius'
       },
       {
         path: '/genius',
@@ -46,7 +47,7 @@ class Dashboard extends React.Component {
         icon: 'job',
         title: 'Boss list',
         component: Genius,
-        hide: user.type == 'genius'
+        hide: user.role === 'boss'
       },
       {
         path: '/msg',
@@ -66,7 +67,9 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        <NavBar mode='dark'>{navList.find(v=>v.path == pathname).title}</NavBar>
+        <NavBar mode='dark'>{navList.find(v=> v.path === pathname).title}</NavBar>
+        <h2>Content</h2>
+        <NavLinkBar data={navList}></NavLinkBar>
       </div>
     )
   }
