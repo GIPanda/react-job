@@ -6,9 +6,10 @@ const User = models.getModel('user');
 const doc_filter = {pwd: 0, __v:0}
 
 Router.get('/list', function(req, res) {
+  const { role } = req.query;
   // User.remove({}, function(e, d){});
-  User.find({}, function(err, doc) {
-    return res.json(doc);
+  User.find({role}, function(err, doc) {
+    return res.json({code: 0, data: doc});
   })
 })
 Router.post('/update', function(req, res) {
