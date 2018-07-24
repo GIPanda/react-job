@@ -13,7 +13,7 @@ const models = {
     pwd: {type: String, require: true},
     role: {type: String, require: true},
     avatar: {type: String},
-    summary: {type: String},
+    desc: {type: String},
     post: {type: String},
     // only for boss
     company: {type: String},

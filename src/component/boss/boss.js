@@ -19,17 +19,25 @@ class Boss extends React.Component {
   }
   render() {
     const Header = Card.Header;
+    const Body = Card.Body;
     return (
       <WingBlank>
+        <WhiteSpace/>
         {this.state.data.map(v => (
           v.avatar ?
-          <Card key={v._id}>
+          (<Card key={v._id}>
             <Header
               title = {v.username}
               thumb = {require(`../img/${v.avatar}.png`)}
               extra = {<span>{v.title}</span>}
             ></Header>
-          </Card> : null
+            <Body>
+              {v.desc = v.desc ? v.desc : ''}
+              {v.desc.split('\n').map(v => (
+                <div key={v}>{v}</div>
+              ))}
+            </Body>
+          </Card>) : null
         ))}
       </WingBlank>
     )
