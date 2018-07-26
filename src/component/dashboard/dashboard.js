@@ -2,19 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Switch, Route} from 'react-router-dom';
 import {NavBar} from 'antd-mobile';
-import Boss from '../boss/boss';
 import NavLinkBar from '../nav-link-bar/nav-link-bar';
-
-function Genius() {
-  return <h2>Genius page</h2>
-}
+import Boss from '../boss/boss';
+import Genius from '../genius/genius';
+import User from '../user/user';
 
 function Message() {
   return <h2>Message page</h2>
-}
-
-function User() {
-  return <h2>User</h2>
 }
 
 @connect(
@@ -27,8 +21,7 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const pathname = this.props.location.pathname;
-    console.log(pathname);
+    const {pathname} = this.props.location;
     const user = this.props.user;
     const navList = [
       {
